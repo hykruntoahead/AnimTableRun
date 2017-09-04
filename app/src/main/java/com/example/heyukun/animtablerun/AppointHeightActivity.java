@@ -98,11 +98,20 @@ public class AppointHeightActivity extends FragmentActivity {
                 mImageView.setBackground(getDrawable(HeightPng.ResImgs[value]));
             }
         });
+        t = null;
     }
 
     private int heightFormat(int height) {
         height = height > MAX_HEIGHT ? MAX_HEIGHT : height;
         height = height < MIN_HEIGHT ? MIN_HEIGHT : height;
         return height;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(valueAnimator != null){
+            valueAnimator.cancel();
+        }
     }
 }

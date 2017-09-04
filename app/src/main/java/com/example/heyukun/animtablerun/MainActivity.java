@@ -54,7 +54,7 @@ public class MainActivity extends FragmentActivity {
                 temp = 80;
             }
 
-            if(temp==height){
+            if (temp == height) {
                 if (height == 179) {
                     temp = 171;
                     isDown = true;
@@ -164,12 +164,6 @@ public class MainActivity extends FragmentActivity {
         super.onStop();
         mHandler.removeCallbacks(mRunnable);
         valueAnimator.cancel();
-    }
-
-
-
-    private void runTable(int startHeight,int endHeight,int timeLength){
-
     }
 
 }

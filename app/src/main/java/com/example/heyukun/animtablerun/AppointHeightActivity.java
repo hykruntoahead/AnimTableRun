@@ -2,12 +2,12 @@ package com.example.heyukun.animtablerun;
 
 import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +24,7 @@ public class AppointHeightActivity extends FragmentActivity {
     private EditText mFromEt, mToEt;
     private Button mBtnRun;
     private ImageView mImageView;
+
 
     private ValueAnimator valueAnimator;
     private int[] t;
@@ -52,12 +53,21 @@ public class AppointHeightActivity extends FragmentActivity {
     }
 
 
-    private void tableRun(int startHeight, int endHeight, int timeout) {
+    /**
+     * 由于我们读取设备信息是每隔timeout时间进行的
+     * 所以每个timeout后都会返回一个高度值
+     *
+     * @param startHeight
+     * @param endHeight
+     * @param timeout
+     * @return
+     */
+    private int tableRun(int startHeight, int endHeight, int timeout) {
         startHeight = heightFormat(startHeight);
         endHeight = heightFormat(endHeight);
 
         if (startHeight == endHeight) {
-            return;
+            return endHeight;
         }
 
         if (startHeight > endHeight) {
@@ -72,7 +82,7 @@ public class AppointHeightActivity extends FragmentActivity {
                 t[startHeight - endHeight - i] = endHeight + i - 80;
             }
         } else {
-            for (int i = 0; i <= endHeight-startHeight; i++) {
+            for (int i = 0; i <= endHeight - startHeight; i++) {
                 t[i] = startHeight + i - 80;
                 Log.d("Widget", "resImg-t[" + i + "]=" + t[i]);
             }
@@ -84,11 +94,7 @@ public class AppointHeightActivity extends FragmentActivity {
             valueAnimator.end();
         }
 
-        if (startHeight > 150 && !isDown || startHeight < 110 && isDown) {
-            valueAnimator.setInterpolator(new DecelerateInterpolator());
-        } else {
-            valueAnimator.setInterpolator(new AccelerateInterpolator());
-        }
+        valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setDuration(timeout);
         valueAnimator.start();
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -99,6 +105,7 @@ public class AppointHeightActivity extends FragmentActivity {
             }
         });
         t = null;
+        return endHeight;
     }
 
     private int heightFormat(int height) {
@@ -110,7 +117,7 @@ public class AppointHeightActivity extends FragmentActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if(valueAnimator != null){
+        if (valueAnimator != null) {
             valueAnimator.cancel();
         }
     }

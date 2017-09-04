@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tv_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:layout_margin="8dp"
         android:text="从"
-        android:textColor="#fff"/>
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/et_from"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/tv_from"
-        />
+        android:layout_toRightOf="@+id/tv_from" />
 
     <TextView
         android:id="@+id/tv_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/et_from"
-        android:textSize="20sp"
         android:layout_margin="8dp"
+        android:layout_toRightOf="@+id/et_from"
         android:text="到"
         android:textColor="#fff"
-        />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_to"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/tv_to"
-        />
+        android:layout_toRightOf="@+id/tv_to" />
 
     <Button
         android:id="@+id/btn_run"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:text="运动"
         android:background="@android:color/holo_blue_bright"
-        android:textColor="#fff"/>
+        android:text="运动"
+        android:textColor="#fff" />
 
     <ImageView
         android:id="@+id/iv_tb"
@@ -53,6 +51,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="220dp"
-        />
+        android:layout_marginBottom="220dp" />
 </RelativeLayout>

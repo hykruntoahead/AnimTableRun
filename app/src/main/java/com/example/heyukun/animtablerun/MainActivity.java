@@ -24,6 +24,7 @@ public class MainActivity extends FragmentActivity {
     private EditText mEditText;
     private int[] t;
 
+
     private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
@@ -123,6 +124,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void initWidgets() {
+
         mImageView = (ImageView) findViewById(R.id.iv_table);
         mEditText = (EditText) findViewById(R.id.et);
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
@@ -163,4 +165,11 @@ public class MainActivity extends FragmentActivity {
         mHandler.removeCallbacks(mRunnable);
         valueAnimator.cancel();
     }
+
+
+
+    private void runTable(int startHeight,int endHeight,int timeLength){
+
+    }
+
 }
